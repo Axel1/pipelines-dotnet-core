@@ -1,42 +1,15 @@
-pipeline {
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-    agent any
+trigger:
+- master
 
-    stages {
+variables:
+  buildConfiguration: 'Release'
 
-        stage('Build'){
-            steps {
-                sh "mvn clean"
-
-                sh "mvn compile"
-            }
-        }
-
-        stage('Test'){
-            steps {
-                
-                sh "mvn test"
-            }
-
-            post {
-                always {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
-            }
-        }
-
-        stage('Package'){
-            steps {
-                
-                sh "mvn package"
-            }
-            post {
-                success {
-                    archiveArtifacts artifacts: '**/target/*.war', followSymlinks: false
-                }
-            }
-        }
-
-    }
-
-}
+steps:
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+  
