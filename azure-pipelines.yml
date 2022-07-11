@@ -6,6 +6,6 @@ variables:
 
 steps:
   command: 'build'
-  arguments: --configuration Release
+  arguments: '--configuration Release'
   displayName: 'dotnet build Release'
   
