@@ -17,11 +17,11 @@ pipeline {
                 sh 'dotnet test pipelines-dotnet-core.csproj --logger "junit;LogFilePath=**/target/surefire-reports/TEST-*.xml"'
                   }
 
-            //post {
-            //    always {
-            //        junit './test/results.xml'
-            //    }
-            //}
+            post {
+                always {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
+            }
         }
 
         stage('Package1'){
