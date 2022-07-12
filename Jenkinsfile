@@ -28,11 +28,11 @@ pipeline {
                 
                 sh "echo package"
             }
-            /*post {
-                success {
-                    archiveArtifacts artifacts: '**/target/*.war', followSymlinks: false
-                }
-            }*/
+            //*post {
+            //    success {
+            //        archiveArtifacts artifacts: '**/target/*.war', followSymlinks: false
+            //    }
+            //}*/
         }
     }
 }
