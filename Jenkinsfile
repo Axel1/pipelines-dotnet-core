@@ -15,14 +15,15 @@ pipeline {
                 
                 sh "dotnet add package JUnitTestLogger --version 1.1.0"
                 sh 'dotnet test pipelines-dotnet-core.csproj --logger "junit;LogFilePath=./test/results.xml"'
+                sh "ls -lA ./test"
                 //sh "dotnet test pipelines-dotnet-core.csproj"
             }
 
-            post {
-                always {
-                    junit './test/results.xml'
-                }
-            }
+            //post {
+            //    always {
+            //        junit './test/results.xml'
+            //    }
+            //}
         }
 
         stage('Package1'){
