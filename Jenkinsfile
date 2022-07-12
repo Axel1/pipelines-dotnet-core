@@ -12,7 +12,7 @@ pipeline {
 
         stage('Test'){
             steps {
-                sh 'dotnet test pipelines-dotnet-core.csproj --logger "junit;LogFilePath=**/test/result.xml"'
+                sh "dotnet test pipelines-dotnet-core.csproj --logger "junit;LogFilePath=**/test/result.xml""
                   }
 
             post {
