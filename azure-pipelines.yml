@@ -3,10 +3,6 @@ variables:
  
 steps:
   inputs:
-    command: 'restore'
-    feedsToUse: 'select'
-
-  inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
   displayName: 'dotnet build $(buildConfiguration)'
