@@ -1,21 +1,38 @@
-variables:
-  buildConfiguration: 'Release'
- 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    arguments: '--configuration $(buildConfiguration)'
-  displayName: 'dotnet build $(buildConfiguration)'
+pipeline {
+    
+    agent any
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    stages {
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
+        stage('Build'){
+            steps {
+                sh "dotnet build pipelines-dotnet-core.csproj"
+                  }
+        }
+
+        stage('Test'){
+            steps {
+                
+                sh "echo test"
+            }
+
+            //post {
+            //    always {
+            //        junit '**/target/surefire-reports/TEST-*.xml'
+            //    }
+            //}
+        }
+
+        stage('Package1'){
+            steps {
+                
+                sh "echo package"
+            }
+            /*post {
+                success {
+                    archiveArtifacts artifacts: '**/target/*.war', followSymlinks: false
+                }
+            }*/
+        }
+    }
+}
