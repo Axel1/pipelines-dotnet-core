@@ -14,7 +14,7 @@ pipeline {
             steps {
                 
                 sh "dotnet add package JUnitTestLogger --version 1.1.0"
-                sh "dotnet test pipelines-dotnet-core.csproj --logger \"junit;LogFilePath=./test/results.xml\""
+                sh 'dotnet test pipelines-dotnet-core.csproj --logger "junit;LogFilePath=./test/results.xml"'
                 //sh "dotnet test pipelines-dotnet-core.csproj"
             }
 
