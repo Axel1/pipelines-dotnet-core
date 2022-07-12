@@ -12,14 +12,12 @@ pipeline {
 
         stage('Test'){
             steps {
-                
-                sh "dotnet add package JUnitTestLogger --version 1.1.0"
-                sh 'dotnet test pipelines-dotnet-core.csproj --logger "junit;LogFilePath=**/target/surefire-reports/TEST-*.xml"'
+                sh 'dotnet test pipelines-dotnet-core.csproj --logger "junit;LogFilePath=**/test/TEST-*.xml"'
                   }
 
             post {
                 always {
-                    junit '**/target/surefire-reports/TEST-*.xml'
+                    junit '**/test/TEST-*.xml'
                 }
             }
         }
