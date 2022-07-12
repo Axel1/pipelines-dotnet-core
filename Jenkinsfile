@@ -12,12 +12,12 @@ pipeline {
 
         stage('Test'){
             steps {
-                sh 'dotnet test --logger "junit;LogFilePath=./test/result.xml"'
+                sh 'dotnet test -l "junit;LogFilePath=./test/result.trx"'
                   }
 
             post {
                 always {
-                    junit './test/result.xml'
+                    junit './test/result.trx'
                 }
             }
         }
