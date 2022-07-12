@@ -13,7 +13,7 @@ pipeline {
         stage('Test'){
             steps {
                 
-                sh "echo test"
+                sh "dotnet test pipelines-dotnet-core.csproj"
             }
 
             //post {
